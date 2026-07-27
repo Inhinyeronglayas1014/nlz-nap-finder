@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NLZ NAP Finder</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .header {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 7px 0 0;
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .search-box h2 {
+            margin-top: 0;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 25px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .field {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .field strong {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .status {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .map-button {
+            margin-top: 20px;
+            background: #16a34a;
+        }
+
+        @media (max-width: 700px) {
+            .search-row {
+                flex-direction: column;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>NLZ NAP FINDER</h1>
+        <p>Fiber Network Search & Port Verification System</p>
+    </div>
+
+    <div class="container">
+
+        <div class="search-box">
+            <h2>🔍 Search Network</h2>
+
+            <div class="search-row">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Enter NAP, OLT, Account, Service ID or Serial Number"
+                >
+
+                <button onclick="searchNAP()">SEARCH</button>
+            </div>
+        </div>
+
+        <div class="result">
+
+            <h2>📋 NAP Information</h2>
+
+            <div class="result-grid">
+
+                <div class="field">
+                    <strong>NAP NAME</strong>
+                    <span id="napName">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>OLT NAME</strong>
+                    <span id="oltName">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>PORT ASSIGNMENT</strong>
+                    <span id="port">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>F/S/P</strong>
+                    <span id="fsp">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>ACCOUNT</strong>
+                    <span id="account">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>SERVICE ID</strong>
+                    <span id="serviceId">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>SERIAL NUMBER</strong>
+                    <span id="serial">---</span>
+                </div>
+
+                <div class="field">
+                    <strong>STATUS</strong>
+                    <span class="status" id="status">---</span>
+                </div>
+
+            </div>
+
+            <button class="map-button" onclick="viewMap()">
+                📍 VIEW NAP LOCATION
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function searchNAP() {
+
+            const keyword =
+                document.getElementById("searchInput").value.trim();
+
+            if (!keyword) {
+                alert("Please enter a search keyword.");
+                return;
+            }
+
+            /*
+             * Temporary demo result.
+             * Later we will connect this to
+             * your real 347,000+ records.
+             */
+
+            document.getElementById("napName").textContent = keyword;
+            document.getElementById("oltName").textContent = "OLT-DEMO";
+            document.getElementById("port").textContent = "PORT-01";
+            document.getElementById("fsp").textContent = "1/1/1";
+            document.getElementById("account").textContent = "DEMO-ACCOUNT";
+            document.getElementById("serviceId").textContent = "SERVICE-DEMO";
+            document.getElementById("serial").textContent = "SN-DEMO";
+            document.getElementById("status").textContent = "DEMO RESULT";
+
+        }
+
+        function viewMap() {
+
+            alert("Map function will be added next.");
+
+        }
+
+    </script>
+
+</body>
+</html>
