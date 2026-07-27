@@ -1,248 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NLZ NAP Finder</title>
+<title>NLZ NAP Finder</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-        }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+}
 
-        .header {
-            background: #0f172a;
-            color: white;
-            padding: 22px;
-            text-align: center;
-        }
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: white;
+    padding: 25px 20px;
+}
 
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+}
 
-        .header p {
-            margin: 7px 0 0;
-            color: #cbd5e1;
-        }
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+.subtitle {
+    margin-top: 6px;
+    color: #cbd5e1;
+}
 
-        .search-box {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+/* MAIN */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
 
-        .search-box h2 {
-            margin-top: 0;
-        }
+/* SEARCH */
+.search-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
 
-        .search-row {
-            display: flex;
-            gap: 10px;
-        }
+.search-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
 
-        input {
-            flex: 1;
-            padding: 14px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+.search-area {
+    display: flex;
+    gap: 10px;
+}
 
-        button {
-            padding: 14px 25px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.search-area input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font-size: 16px;
+    outline: none;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+.search-area input:focus {
+    border-color: #2563eb;
+}
 
-        .result {
-            margin-top: 25px;
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+.search-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+.search-btn:hover {
+    background: #1d4ed8;
+}
 
-        .field {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 8px;
-        }
+/* FILTERS */
+.filters {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-        .field strong {
-            display: block;
-            color: #64748b;
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
+.filters select {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+}
 
-        .status {
-            color: #16a34a;
-            font-weight: bold;
-        }
+/* RESULT */
+.result-card {
+    margin-top: 25px;
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
 
-        .map-button {
-            margin-top: 20px;
-            background: #16a34a;
-        }
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        @media (max-width: 700px) {
-            .search-row {
-                flex-direction: column;
-            }
+.result-header h2 {
+    margin: 0;
+}
 
-            .result-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.status {
+    background: #dcfce7;
+    color: #166534;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* INFORMATION GRID */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.info {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 16px;
+    border-radius: 9px;
+}
+
+.info label {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.info span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ACTIONS */
+.actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.map {
+    background: #16a34a;
+}
+
+.route {
+    background: #7c3aed;
+}
+
+.clear {
+    background: #64748b;
+}
+
+/* PORT */
+.port-section {
+    margin-top: 30px;
+}
+
+.port-section h3 {
+    margin-bottom: 15px;
+}
+
+.port-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+}
+
+.port {
+    padding: 13px 5px;
+    text-align: center;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.available {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.occupied {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 25px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* MOBILE */
+@media(max-width: 800px) {
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .port-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+
+    .search-area {
+        flex-direction: column;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .port-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>NLZ NAP FINDER</h1>
-        <p>Fiber Network Search & Port Verification System</p>
+<header class="header">
+    <div class="header-content">
+        <div class="logo">📡 NLZ NAP FINDER</div>
+        <div class="subtitle">
+            Fiber Network Search & Port Verification System
+        </div>
     </div>
+</header>
 
-    <div class="container">
+<main class="container">
 
-        <div class="search-box">
-            <h2>🔍 Search Network</h2>
+    <!-- SEARCH -->
+    <section class="search-card">
 
-            <div class="search-row">
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Enter NAP, OLT, Account, Service ID or Serial Number"
-                >
-
-                <button onclick="searchNAP()">SEARCH</button>
-            </div>
+        <div class="search-title">
+            🔍 Network Search
         </div>
 
-        <div class="result">
+        <div class="search-area">
 
-            <h2>📋 NAP Information</h2>
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search NAP, OLT, Account, Service ID or Serial Number..."
+                onkeydown="if(event.key === 'Enter') searchNAP()"
+            >
 
-            <div class="result-grid">
-
-                <div class="field">
-                    <strong>NAP NAME</strong>
-                    <span id="napName">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>OLT NAME</strong>
-                    <span id="oltName">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>PORT ASSIGNMENT</strong>
-                    <span id="port">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>F/S/P</strong>
-                    <span id="fsp">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>ACCOUNT</strong>
-                    <span id="account">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>SERVICE ID</strong>
-                    <span id="serviceId">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>SERIAL NUMBER</strong>
-                    <span id="serial">---</span>
-                </div>
-
-                <div class="field">
-                    <strong>STATUS</strong>
-                    <span class="status" id="status">---</span>
-                </div>
-
-            </div>
-
-            <button class="map-button" onclick="viewMap()">
-                📍 VIEW NAP LOCATION
+            <button class="search-btn" onclick="searchNAP()">
+                SEARCH
             </button>
 
         </div>
 
-    </div>
+        <div class="filters">
 
-    <script>
+            <select id="searchType">
+                <option value="all">Search All</option>
+                <option value="nap">NAP Name</option>
+                <option value="olt">OLT Name</option>
+                <option value="account">Account</option>
+                <option value="service">Service ID</option>
+                <option value="serial">Serial Number</option>
+            </select>
 
-        function searchNAP() {
+            <select id="vendor">
+                <option value="all">All Vendors</option>
+                <option value="Globe">Globe</option>
+                <option value="PLDT">PLDT</option>
+                <option value="Other">Other</option>
+            </select>
 
-            const keyword =
-                document.getElementById("searchInput").value.trim();
+        </div>
 
-            if (!keyword) {
-                alert("Please enter a search keyword.");
-                return;
-            }
+    </section>
 
-            /*
-             * Temporary demo result.
-             * Later we will connect this to
-             * your real 347,000+ records.
-             */
+    <!-- RESULT -->
+    <section class="result-card">
 
-            document.getElementById("napName").textContent = keyword;
-            document.getElementById("oltName").textContent = "OLT-DEMO";
-            document.getElementById("port").textContent = "PORT-01";
-            document.getElementById("fsp").textContent = "1/1/1";
-            document.getElementById("account").textContent = "DEMO-ACCOUNT";
-            document.getElementById("serviceId").textContent = "SERVICE-DEMO";
-            document.getElementById("serial").textContent = "SN-DEMO";
-            document.getElementById("status").textContent = "DEMO RESULT";
+        <div class="result-header">
 
-        }
+            <h2>📋 NAP Information</h2>
 
-        function viewMap() {
+            <div class="status" id="status">
+                READY
+            </div>
 
-            alert("Map function will be added next.");
+        </div>
 
-        }
+        <div class="info-grid">
 
-    </script>
+            <div class="info">
+                <label>NAP NAME</label>
+                <span id="napName">---</span>
+            </div>
+
+            <div class="info">
+                <label>OLT NAME</label>
+                <span id="oltName">---</span>
+            </div>
+
+            <div class="info">
+                <label>PORT ASSIGNMENT</label>
+                <span id="port">---</span>
+            </div>
+
+            <div class="info">
+                <label>F/S/P</label>
+                <span id="fsp">---</span>
+            </div>
+
+            <div class="info">
+                <label>ACCOUNT</label>
+                <span id="account">---</span>
+            </div>
+
+            <div class="info">
+                <label>SERVICE ID</label>
+                <span id="serviceId">---</span>
+            </div>
+
+            <div class="info">
+                <label>SERIAL NUMBER</label>
+                <span id="serial">---</span>
+            </div>
+
+            <div class="info">
+                <label>VENDOR</label>
+                <span id="vendorResult">---</span>
+            </div>
+
+            <div class="info">
+                <label>LOCATION</label>
+                <span id="location">---</span>
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button class="action-btn map" onclick="viewMap()">
+                📍 VIEW MAP
+            </button>
+
+            <button class="action-btn route" onclick="routeToNAP()">
+                🧭 ROUTE TO NAP
+            </button>
+
+            <button class="action-btn clear" onclick="clearResult()">
+                CLEAR
+            </button>
+
+        </div>
+
+        <!-- PORT STATUS -->
+        <div class="port-section">
+
+            <h3>🔌 PORT STATUS</h3>
+
+            <div class="port-grid" id="portGrid">
+
+                <div class="port available">P01</div>
+                <div class="port occupied">P02</div>
+                <div class="port available">P03</div>
+                <div class="port occupied">P04</div>
+                <div class="port available">P05</div>
+                <div class="port pending">P06</div>
+                <div class="port occupied">P07</div>
+                <div class="port available">P08</div>
+
+                <div class="port occupied">P09</div>
+                <div class="port available">P10</div>
+                <div class="port available">P11</div>
+                <div class="port occupied">P12</div>
+                <div class="port available">P13</div>
+                <div class="port pending">P14</div>
+                <div class="port occupied">P15</div>
+                <div class="port available">P16</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    NLZ NAP Finder • Fiber Network Operations Tool
+</footer>
+
+<script>
+
+function searchNAP() {
+
+    const keyword =
+        document.getElementById("searchInput").value.trim();
+
+    if (!keyword) {
+
+        alert("Please enter a search keyword.");
+
+        return;
+    }
+
+    /*
+        TEMPORARY DEMO DATA
+
+        Later we will replace this
+        with the real NAP database.
+    */
+
+    document.getElementById("napName").textContent = keyword;
+    document.getElementById("oltName").textContent = "OLT-DEMO";
+    document.getElementById("port").textContent = "PORT-01";
+    document.getElementById("fsp").textContent = "1/1/1";
+    document.getElementById("account").textContent = "DEMO-ACCOUNT";
+    document.getElementById("serviceId").textContent = "SERVICE-DEMO";
+    document.getElementById("serial").textContent = "SN-DEMO";
+    document.getElementById("vendorResult").textContent = "DEMO";
+    document.getElementById("location").textContent = "LOCATION-DEMO";
+
+    document.getElementById("status").textContent =
+        "RESULT FOUND";
+}
+
+
+function viewMap() {
+
+    alert("Map integration will be added next.");
+
+}
+
+
+function routeToNAP() {
+
+    alert("Route function will be added next.");
+
+}
+
+
+function clearResult() {
+
+    document.getElementById("searchInput").value = "";
+
+    document.getElementById("napName").textContent = "---";
+    document.getElementById("oltName").textContent = "---";
+    document.getElementById("port").textContent = "---";
+    document.getElementById("fsp").textContent = "---";
+    document.getElementById("account").textContent = "---";
+    document.getElementById("serviceId").textContent = "---";
+    document.getElementById("serial").textContent = "---";
+    document.getElementById("vendorResult").textContent = "---";
+    document.getElementById("location").textContent = "---";
+
+    document.getElementById("status").textContent = "READY";
+
+}
+
+</script>
 
 </body>
 </html>
