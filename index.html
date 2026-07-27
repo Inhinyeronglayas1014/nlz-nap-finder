@@ -13,19 +13,18 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     background: #f1f5f9;
     color: #0f172a;
 }
 
-/* HEADER */
 .header {
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
     color: white;
-    padding: 25px 20px;
+    padding: 24px 20px;
 }
 
-.header-content {
+.header-inner {
     max-width: 1200px;
     margin: auto;
 }
@@ -40,197 +39,152 @@ body {
     color: #cbd5e1;
 }
 
-/* MAIN */
 .container {
     max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
+    margin: 25px auto;
+    padding: 0 18px;
 }
 
-/* SEARCH */
-.search-card {
+.card {
     background: white;
-    padding: 25px;
     border-radius: 14px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.07);
 }
 
-.search-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
+h2 {
+    margin-top: 0;
 }
 
-.search-area {
+.search-row {
     display: flex;
     gap: 10px;
 }
 
-.search-area input {
-    flex: 1;
-    padding: 15px;
+input, select {
+    padding: 13px;
     border: 1px solid #cbd5e1;
-    border-radius: 9px;
-    font-size: 16px;
-    outline: none;
+    border-radius: 8px;
+    font-size: 15px;
 }
 
-.search-area input:focus {
-    border-color: #2563eb;
+#searchInput {
+    flex: 1;
+}
+
+button {
+    border: 0;
+    border-radius: 8px;
+    padding: 13px 20px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .search-btn {
-    padding: 15px 25px;
-    border: none;
-    border-radius: 9px;
     background: #2563eb;
     color: white;
-    font-weight: bold;
-    cursor: pointer;
 }
 
-.search-btn:hover {
-    background: #1d4ed8;
+.upload-btn {
+    background: #16a34a;
+    color: white;
 }
 
-/* FILTERS */
-.filters {
-    margin-top: 15px;
+.clear-btn {
+    background: #64748b;
+    color: white;
+}
+
+.controls {
     display: flex;
     gap: 10px;
+    margin-top: 12px;
     flex-wrap: wrap;
 }
 
-.filters select {
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 7px;
-}
-
-/* RESULT */
-.result-card {
-    margin-top: 25px;
-    background: white;
-    border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-
-.result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.result-header h2 {
-    margin: 0;
+.file-info {
+    margin-top: 12px;
+    color: #475569;
+    font-size: 14px;
 }
 
 .status {
-    background: #dcfce7;
-    color: #166534;
-    padding: 7px 13px;
+    display: inline-block;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-weight: bold;
+    background: #e2e8f0;
     font-size: 13px;
-}
-
-/* INFORMATION GRID */
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.info {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 16px;
-    border-radius: 9px;
-}
-
-.info label {
-    display: block;
-    font-size: 12px;
-    color: #64748b;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.info span {
-    font-size: 16px;
     font-weight: bold;
 }
 
-/* ACTIONS */
-.actions {
-    margin-top: 25px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.action-btn {
-    padding: 12px 18px;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.map {
-    background: #16a34a;
-}
-
-.route {
-    background: #7c3aed;
-}
-
-.clear {
-    background: #64748b;
-}
-
-/* PORT */
-.port-section {
-    margin-top: 30px;
-}
-
-.port-section h3 {
-    margin-bottom: 15px;
-}
-
-.port-grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 8px;
-}
-
-.port {
-    padding: 13px 5px;
-    text-align: center;
-    border-radius: 7px;
-    font-weight: bold;
-    font-size: 13px;
-}
-
-.available {
+.status.ready {
     background: #dcfce7;
     color: #166534;
 }
 
-.occupied {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.pending {
+.status.warning {
     background: #fef3c7;
     color: #92400e;
 }
 
-/* FOOTER */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.result-count {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 950px;
+}
+
+th {
+    background: #e2e8f0;
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+}
+
+td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 11px;
+    font-size: 14px;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+.nap-link {
+    color: #2563eb;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.empty {
+    text-align: center;
+    padding: 35px;
+    color: #64748b;
+}
+
+.map-btn {
+    background: #7c3aed;
+    color: white;
+}
+
 .footer {
     text-align: center;
     padding: 25px;
@@ -238,30 +192,13 @@ body {
     font-size: 13px;
 }
 
-/* MOBILE */
-@media(max-width: 800px) {
-
-    .info-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .port-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media(max-width: 600px) {
-
-    .search-area {
+@media(max-width:700px) {
+    .search-row {
         flex-direction: column;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .port-grid {
-        grid-template-columns: repeat(4, 1fr);
+    .logo {
+        font-size: 23px;
     }
 }
 </style>
@@ -270,7 +207,7 @@ body {
 <body>
 
 <header class="header">
-    <div class="header-content">
+    <div class="header-inner">
         <div class="logo">📡 NLZ NAP FINDER</div>
         <div class="subtitle">
             Fiber Network Search & Port Verification System
@@ -280,154 +217,159 @@ body {
 
 <main class="container">
 
-    <!-- SEARCH -->
-    <section class="search-card">
+    <!-- DATABASE UPLOAD -->
+    <section class="card">
 
-        <div class="search-title">
-            🔍 Network Search
+        <h2>📂 Load PORT CHECKING Database</h2>
+
+        <p>
+            Upload a CSV export of your PORT CHECKING data.
+            The file stays on your device and is not uploaded to GitHub.
+        </p>
+
+        <div class="controls">
+
+            <input
+                type="file"
+                id="csvFile"
+                accept=".csv"
+            >
+
+            <button
+                class="upload-btn"
+                onclick="loadCSV()">
+                LOAD DATABASE
+            </button>
+
         </div>
 
-        <div class="search-area">
+        <div class="file-info" id="fileInfo">
+            No database loaded.
+        </div>
+
+    </section>
+
+    <!-- SEARCH -->
+    <section class="card">
+
+        <h2>🔎 Network Search</h2>
+
+        <div class="search-row">
 
             <input
                 id="searchInput"
                 type="text"
                 placeholder="Search NAP, OLT, Account, Service ID or Serial Number..."
-                onkeydown="if(event.key === 'Enter') searchNAP()"
+                onkeydown="if(event.key === 'Enter') searchData()"
             >
 
-            <button class="search-btn" onclick="searchNAP()">
+            <button
+                class="search-btn"
+                onclick="searchData()">
                 SEARCH
             </button>
 
         </div>
 
-        <div class="filters">
+        <div class="controls">
 
             <select id="searchType">
-                <option value="all">Search All</option>
-                <option value="nap">NAP Name</option>
-                <option value="olt">OLT Name</option>
-                <option value="account">Account</option>
-                <option value="service">Service ID</option>
-                <option value="serial">Serial Number</option>
+
+                <option value="all">
+                    Search All Fields
+                </option>
+
+                <option value="nap">
+                    NAP Name
+                </option>
+
+                <option value="olt">
+                    OLT Name
+                </option>
+
+                <option value="port">
+                    Port Assignment
+                </option>
+
+                <option value="fsp">
+                    F/S/P
+                </option>
+
+                <option value="account">
+                    Customer Account
+                </option>
+
+                <option value="service">
+                    Service ID
+                </option>
+
+                <option value="serial">
+                    Serial Number
+                </option>
+
             </select>
 
-            <select id="vendor">
-                <option value="all">All Vendors</option>
-                <option value="Globe">Globe</option>
-                <option value="PLDT">PLDT</option>
-                <option value="Other">Other</option>
-            </select>
+            <button
+                class="clear-btn"
+                onclick="clearSearch()">
+                CLEAR
+            </button>
+
+            <span
+                class="status"
+                id="status">
+                DATABASE NOT LOADED
+            </span>
 
         </div>
 
     </section>
 
-    <!-- RESULT -->
-    <section class="result-card">
+    <!-- RESULTS -->
+    <section class="card">
 
-        <div class="result-header">
+        <div class="results-header">
 
-            <h2>📋 NAP Information</h2>
+            <h2>📋 Search Results</h2>
 
-            <div class="status" id="status">
-                READY
+            <div
+                class="result-count"
+                id="resultCount">
+                0 results
             </div>
 
         </div>
 
-        <div class="info-grid">
+        <div class="table-wrap">
 
-            <div class="info">
-                <label>NAP NAME</label>
-                <span id="napName">---</span>
-            </div>
+            <table>
 
-            <div class="info">
-                <label>OLT NAME</label>
-                <span id="oltName">---</span>
-            </div>
+                <thead>
 
-            <div class="info">
-                <label>PORT ASSIGNMENT</label>
-                <span id="port">---</span>
-            </div>
+                    <tr>
+                        <th>Vendor</th>
+                        <th>OLT Name</th>
+                        <th>NAP Name</th>
+                        <th>Port Assignment</th>
+                        <th>F/S/P</th>
+                        <th>Customer Account</th>
+                        <th>Service ID</th>
+                        <th>Serial Number</th>
+                    </tr>
 
-            <div class="info">
-                <label>F/S/P</label>
-                <span id="fsp">---</span>
-            </div>
+                </thead>
 
-            <div class="info">
-                <label>ACCOUNT</label>
-                <span id="account">---</span>
-            </div>
+                <tbody id="resultsBody">
 
-            <div class="info">
-                <label>SERVICE ID</label>
-                <span id="serviceId">---</span>
-            </div>
+                    <tr>
+                        <td colspan="8" class="empty">
+                            Load your CSV database first.
+                        </td>
+                    </tr>
 
-            <div class="info">
-                <label>SERIAL NUMBER</label>
-                <span id="serial">---</span>
-            </div>
+                </tbody>
 
-            <div class="info">
-                <label>VENDOR</label>
-                <span id="vendorResult">---</span>
-            </div>
-
-            <div class="info">
-                <label>LOCATION</label>
-                <span id="location">---</span>
-            </div>
-
-        </div>
-
-        <div class="actions">
-
-            <button class="action-btn map" onclick="viewMap()">
-                📍 VIEW MAP
-            </button>
-
-            <button class="action-btn route" onclick="routeToNAP()">
-                🧭 ROUTE TO NAP
-            </button>
-
-            <button class="action-btn clear" onclick="clearResult()">
-                CLEAR
-            </button>
-
-        </div>
-
-        <!-- PORT STATUS -->
-        <div class="port-section">
-
-            <h3>🔌 PORT STATUS</h3>
-
-            <div class="port-grid" id="portGrid">
-
-                <div class="port available">P01</div>
-                <div class="port occupied">P02</div>
-                <div class="port available">P03</div>
-                <div class="port occupied">P04</div>
-                <div class="port available">P05</div>
-                <div class="port pending">P06</div>
-                <div class="port occupied">P07</div>
-                <div class="port available">P08</div>
-
-                <div class="port occupied">P09</div>
-                <div class="port available">P10</div>
-                <div class="port available">P11</div>
-                <div class="port occupied">P12</div>
-                <div class="port available">P13</div>
-                <div class="port pending">P14</div>
-                <div class="port occupied">P15</div>
-                <div class="port available">P16</div>
-
-            </div>
+            </table>
 
         </div>
 
@@ -441,69 +383,399 @@ body {
 
 <script>
 
-function searchNAP() {
+let database = [];
 
-    const keyword =
-        document.getElementById("searchInput").value.trim();
 
-    if (!keyword) {
+/* =========================
+   CSV LOADER
+========================= */
 
-        alert("Please enter a search keyword.");
+function loadCSV() {
+
+    const fileInput =
+        document.getElementById("csvFile");
+
+    const file =
+        fileInput.files[0];
+
+    if (!file) {
+
+        alert("Please select your PORT CHECKING CSV file.");
 
         return;
     }
 
-    /*
-        TEMPORARY DEMO DATA
+    const reader = new FileReader();
 
-        Later we will replace this
-        with the real NAP database.
-    */
+    reader.onload = function(event) {
 
-    document.getElementById("napName").textContent = keyword;
-    document.getElementById("oltName").textContent = "OLT-DEMO";
-    document.getElementById("port").textContent = "PORT-01";
-    document.getElementById("fsp").textContent = "1/1/1";
-    document.getElementById("account").textContent = "DEMO-ACCOUNT";
-    document.getElementById("serviceId").textContent = "SERVICE-DEMO";
-    document.getElementById("serial").textContent = "SN-DEMO";
-    document.getElementById("vendorResult").textContent = "DEMO";
-    document.getElementById("location").textContent = "LOCATION-DEMO";
+        const text = event.target.result;
 
-    document.getElementById("status").textContent =
-        "RESULT FOUND";
-}
+        database = parseCSV(text);
 
+        document.getElementById("fileInfo").textContent =
+            file.name + " • " +
+            database.length.toLocaleString() +
+            " records loaded.";
 
-function viewMap() {
+        document.getElementById("status").textContent =
+            "DATABASE READY";
 
-    alert("Map integration will be added next.");
+        document.getElementById("status").className =
+            "status ready";
 
-}
+        document.getElementById("resultCount").textContent =
+            database.length.toLocaleString() +
+            " records";
 
+        displayResults(database.slice(0, 100));
 
-function routeToNAP() {
+    };
 
-    alert("Route function will be added next.");
+    reader.readAsText(file);
 
 }
 
 
-function clearResult() {
+/* =========================
+   CSV PARSER
+========================= */
+
+function parseCSV(text) {
+
+    const rows = [];
+
+    let row = [];
+
+    let value = "";
+
+    let insideQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+
+        const char = text[i];
+
+        const next = text[i + 1];
+
+        if (char === '"' && insideQuotes && next === '"') {
+
+            value += '"';
+
+            i++;
+
+        }
+
+        else if (char === '"') {
+
+            insideQuotes = !insideQuotes;
+
+        }
+
+        else if (char === "," && !insideQuotes) {
+
+            row.push(value.trim());
+
+            value = "";
+
+        }
+
+        else if (
+            (char === "\n" || char === "\r") &&
+            !insideQuotes
+        ) {
+
+            if (char === "\r" && next === "\n") {
+
+                i++;
+
+            }
+
+            row.push(value.trim());
+
+            if (row.some(cell => cell !== "")) {
+
+                rows.push(row);
+
+            }
+
+            row = [];
+
+            value = "";
+
+        }
+
+        else {
+
+            value += char;
+
+        }
+
+    }
+
+    if (value !== "" || row.length > 0) {
+
+        row.push(value.trim());
+
+        rows.push(row);
+
+    }
+
+    if (rows.length === 0) {
+
+        return [];
+
+    }
+
+    const headers =
+        rows[0].map(normalizeHeader);
+
+    return rows.slice(1).map(row => {
+
+        const item = {};
+
+        headers.forEach((header, index) => {
+
+            item[header] =
+                row[index] || "";
+
+        });
+
+        return item;
+
+    });
+
+}
+
+
+/* =========================
+   HEADER NORMALIZATION
+========================= */
+
+function normalizeHeader(header) {
+
+    return header
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "_")
+        .replace(/[^\w]/g, "");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchData() {
+
+    if (database.length === 0) {
+
+        alert("Please load the PORT CHECKING database first.");
+
+        return;
+    }
+
+    const keyword =
+        document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    if (!keyword) {
+
+        displayResults(database.slice(0, 100));
+
+        return;
+    }
+
+    const type =
+        document.getElementById("searchType").value;
+
+    const results =
+        database.filter(row => {
+
+            if (type === "all") {
+
+                return Object.values(row)
+                    .some(value =>
+                        String(value)
+                        .toLowerCase()
+                        .includes(keyword)
+                    );
+
+            }
+
+            const fieldMap = {
+
+                nap: "nap_name",
+
+                olt: "olt_name",
+
+                port: "port_assignment",
+
+                fsp: "fsp",
+
+                account: "bb_customer_account",
+
+                service: "servic_id",
+
+                serial: "serial_number"
+
+            };
+
+            const field =
+                fieldMap[type];
+
+            return String(row[field] || "")
+                .toLowerCase()
+                .includes(keyword);
+
+        });
+
+    document.getElementById("resultCount").textContent =
+        results.length.toLocaleString() +
+        " result(s)";
+
+    displayResults(results.slice(0, 500));
+
+}
+
+
+/* =========================
+   DISPLAY
+========================= */
+
+function displayResults(results) {
+
+    const body =
+        document.getElementById("resultsBody");
+
+    body.innerHTML = "";
+
+    if (results.length === 0) {
+
+        body.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    No matching records found.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    results.forEach(row => {
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML = `
+
+            <td>${safe(row.vendor)}</td>
+
+            <td>${safe(row.olt_name)}</td>
+
+            <td>
+                <span
+                    class="nap-link"
+                    onclick="openMap('${safeAttr(row.latitude)}','${safeAttr(row.longitude)}')">
+                    ${safe(row.nap_name)}
+                </span>
+            </td>
+
+            <td>${safe(row.port_assignment)}</td>
+
+            <td>${safe(row.fsp)}</td>
+
+            <td>${safe(row.bb_customer_account)}</td>
+
+            <td>${safe(row.servic_id)}</td>
+
+            <td>${safe(row.serial_number)}</td>
+
+        `;
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =========================
+   GOOGLE MAPS
+========================= */
+
+function openMap(latitude, longitude) {
+
+    if (
+        !latitude ||
+        !longitude
+    ) {
+
+        alert(
+            "Latitude and Longitude are not available in this CSV."
+        );
+
+        return;
+
+    }
+
+    const url =
+        "https://www.google.com/maps?q=" +
+        encodeURIComponent(latitude) +
+        "," +
+        encodeURIComponent(longitude);
+
+    window.open(url, "_blank");
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearSearch() {
 
     document.getElementById("searchInput").value = "";
 
-    document.getElementById("napName").textContent = "---";
-    document.getElementById("oltName").textContent = "---";
-    document.getElementById("port").textContent = "---";
-    document.getElementById("fsp").textContent = "---";
-    document.getElementById("account").textContent = "---";
-    document.getElementById("serviceId").textContent = "---";
-    document.getElementById("serial").textContent = "---";
-    document.getElementById("vendorResult").textContent = "---";
-    document.getElementById("location").textContent = "---";
+    if (database.length > 0) {
 
-    document.getElementById("status").textContent = "READY";
+        displayResults(
+            database.slice(0, 100)
+        );
+
+        document.getElementById("resultCount").textContent =
+            database.length.toLocaleString() +
+            " records";
+
+    }
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function safe(value) {
+
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+function safeAttr(value) {
+
+    return String(value || "")
+        .replace(/'/g, "\\'");
 
 }
 
