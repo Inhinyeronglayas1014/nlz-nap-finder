@@ -7,11 +7,13 @@
 <title>NLZ NAP Finder</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
-    font-family:Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f1f5f9;
     color:#0f172a;
 }
@@ -23,7 +25,7 @@ body{
 }
 
 .header-inner{
-    max-width:1250px;
+    max-width:1300px;
     margin:auto;
 }
 
@@ -38,7 +40,7 @@ body{
 }
 
 .container{
-    max-width:1250px;
+    max-width:1300px;
     margin:25px auto;
     padding:0 18px;
 }
@@ -225,7 +227,7 @@ select{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1100px;
+    min-width:1150px;
 }
 
 th{
@@ -255,11 +257,6 @@ tr:hover{
     font-weight:bold;
 }
 
-.unknown{
-    color:#92400e;
-    font-weight:bold;
-}
-
 .nap-link{
     color:#2563eb;
     font-weight:bold;
@@ -270,6 +267,11 @@ tr:hover{
     text-align:center;
     padding:30px;
     color:#64748b;
+}
+
+.error{
+    color:#b91c1c;
+    font-weight:bold;
 }
 
 .footer{
@@ -314,20 +316,19 @@ tr:hover{
 <body>
 
 <header class="header">
-<div class="header-inner">
-
-    <div class="logo">📡 NLZ NAP FINDER</div>
-
-    <div class="subtitle">
-        Fiber Network Search & Port Verification System
+    <div class="header-inner">
+        <div class="logo">📡 NLZ NAP FINDER</div>
+        <div class="subtitle">
+            Fiber Network Search & Port Verification System
+        </div>
     </div>
-
-</div>
 </header>
 
 <main class="container">
 
-<!-- DATABASES -->
+<!-- =========================
+     DATABASE UPLOAD
+========================= -->
 
 <section class="card">
 
@@ -335,64 +336,68 @@ tr:hover{
 
 <div class="upload-grid">
 
-<div class="upload-box">
+    <!-- PORT CHECKING -->
 
-<h3>1️⃣ PORT CHECKING</h3>
+    <div class="upload-box">
 
-<p>
-Contains Port Assignment, F/S/P, Account,
-Service ID and Serial Number.
-</p>
+        <h3>1️⃣ PORT CHECKING DATABASE</h3>
 
-<input
-    type="file"
-    id="portFile"
-    accept=".csv"
->
+        <p>
+            Contains NAP Port, Port Assignment,
+            F/S/P, Account, Service ID and Serial Number.
+        </p>
 
-<button
-    class="load-btn"
-    onclick="loadPortDatabase()">
-    LOAD PORT DATABASE
-</button>
+        <input
+            type="file"
+            id="portFile"
+            accept=".csv,.txt"
+        >
 
-<div
-    class="file-info"
-    id="portInfo">
-    Not loaded
-</div>
+        <button
+            class="load-btn"
+            onclick="loadPortDatabase()">
+            LOAD PORT DATABASE
+        </button>
 
-</div>
+        <div
+            class="file-info"
+            id="portInfo">
+            Not loaded
+        </div>
+
+    </div>
 
 
-<div class="upload-box">
+    <!-- NAP LOCATION -->
 
-<h3>2️⃣ NAP LOCATION</h3>
+    <div class="upload-box">
 
-<p>
-Contains NAP, Splitter, NAP Port,
-Latitude and Longitude.
-</p>
+        <h3>2️⃣ NAP LOCATION DATABASE</h3>
 
-<input
-    type="file"
-    id="locationFile"
-    accept=".csv"
->
+        <p>
+            Contains NAP, Splitter, NAP Port,
+            Latitude and Longitude.
+        </p>
 
-<button
-    class="load-btn"
-    onclick="loadLocationDatabase()">
-    LOAD LOCATION DATABASE
-</button>
+        <input
+            type="file"
+            id="locationFile"
+            accept=".csv,.txt"
+        >
 
-<div
-    class="file-info"
-    id="locationInfo">
-    Not loaded
-</div>
+        <button
+            class="load-btn"
+            onclick="loadLocationDatabase()">
+            LOAD LOCATION DATABASE
+        </button>
 
-</div>
+        <div
+            class="file-info"
+            id="locationInfo">
+            Not loaded
+        </div>
+
+    </div>
 
 </div>
 
@@ -407,7 +412,9 @@ Latitude and Longitude.
 </section>
 
 
-<!-- SEARCH -->
+<!-- =========================
+     SEARCH
+========================= -->
 
 <section class="card">
 
@@ -415,49 +422,51 @@ Latitude and Longitude.
 
 <div class="search-row">
 
-<input
-    id="searchInput"
-    type="text"
-    placeholder="Search NAP, OLT, Account, Service ID, Serial or Port..."
-    onkeydown="if(event.key==='Enter') searchData()"
->
+    <input
+        id="searchInput"
+        type="text"
+        placeholder="Search NAP, OLT, Account, Service ID, Serial or Port..."
+        onkeydown="if(event.key==='Enter') searchData()"
+    >
 
-<button
-    class="search-btn"
-    onclick="searchData()">
-    SEARCH
-</button>
+    <button
+        class="search-btn"
+        onclick="searchData()">
+        SEARCH
+    </button>
 
 </div>
 
 <div class="controls">
 
-<select id="searchType">
+    <select id="searchType">
 
-<option value="all">Search All</option>
-<option value="nap">NAP</option>
-<option value="olt">OLT</option>
-<option value="napport">NAP Port</option>
-<option value="port">Port Assignment</option>
-<option value="fsp">F/S/P</option>
-<option value="account">Account</option>
-<option value="service">Service ID</option>
-<option value="serial">Serial Number</option>
+        <option value="all">Search All</option>
+        <option value="nap">NAP</option>
+        <option value="olt">OLT</option>
+        <option value="napport">NAP Port</option>
+        <option value="port">Port Assignment</option>
+        <option value="fsp">F/S/P</option>
+        <option value="account">Account</option>
+        <option value="service">Service ID</option>
+        <option value="serial">Serial Number</option>
 
-</select>
+    </select>
 
-<button
-    class="clear-btn"
-    onclick="clearSearch()">
-    CLEAR
-</button>
+    <button
+        class="clear-btn"
+        onclick="clearSearch()">
+        CLEAR
+    </button>
 
 </div>
 
 </section>
 
 
-<!-- NAP SUMMARY -->
+<!-- =========================
+     NAP SUMMARY
+========================= -->
 
 <section class="card">
 
@@ -465,107 +474,111 @@ Latitude and Longitude.
 
 <div class="summary">
 
-<div class="summary-box">
-<small>NAP</small>
-<strong id="sumNap">---</strong>
+    <div class="summary-box">
+        <small>NAP</small>
+        <strong id="sumNap">---</strong>
+    </div>
+
+    <div class="summary-box">
+        <small>OLT</small>
+        <strong id="sumOlt">---</strong>
+    </div>
+
+    <div class="summary-box">
+        <small>Total Matching Ports</small>
+        <strong id="sumTotal">0</strong>
+    </div>
+
+    <div class="summary-box">
+        <small>Assigned</small>
+        <strong id="sumAssigned">0</strong>
+    </div>
+
 </div>
 
-<div class="summary-box">
-<small>OLT</small>
-<strong id="sumOlt">---</strong>
-</div>
-
-<div class="summary-box">
-<small>Total Ports</small>
-<strong id="sumTotal">0</strong>
-</div>
-
-<div class="summary-box">
-<small>Assigned</small>
-<strong id="sumAssigned">0</strong>
-</div>
-
-</div>
 
 <div class="details">
 
-<div class="detail">
-<label>VENDOR</label>
-<span id="dVendor">---</span>
+    <div class="detail">
+        <label>VENDOR</label>
+        <span id="dVendor">---</span>
+    </div>
+
+    <div class="detail">
+        <label>NAP SPLITTER</label>
+        <span id="dSplitter">---</span>
+    </div>
+
+    <div class="detail">
+        <label>NAP PORT</label>
+        <span id="dNapPort">---</span>
+    </div>
+
+    <div class="detail">
+        <label>PORT ASSIGNMENT</label>
+        <span id="dPort">---</span>
+    </div>
+
+    <div class="detail">
+        <label>F/S/P</label>
+        <span id="dFsp">---</span>
+    </div>
+
+    <div class="detail">
+        <label>ACCOUNT</label>
+        <span id="dAccount">---</span>
+    </div>
+
+    <div class="detail">
+        <label>DATA SERVICE ID</label>
+        <span id="dService">---</span>
+    </div>
+
+    <div class="detail">
+        <label>VOIP SERVICE ID</label>
+        <span id="dVoip">---</span>
+    </div>
+
+    <div class="detail">
+        <label>SERIAL NUMBER</label>
+        <span id="dSerial">---</span>
+    </div>
+
+    <div class="detail">
+        <label>LATITUDE</label>
+        <span id="dLat">---</span>
+    </div>
+
+    <div class="detail">
+        <label>LONGITUDE</label>
+        <span id="dLong">---</span>
+    </div>
+
 </div>
 
-<div class="detail">
-<label>NAP SPLITTER</label>
-<span id="dSplitter">---</span>
-</div>
-
-<div class="detail">
-<label>NAP PORT</label>
-<span id="dNapPort">---</span>
-</div>
-
-<div class="detail">
-<label>PORT ASSIGNMENT</label>
-<span id="dPort">---</span>
-</div>
-
-<div class="detail">
-<label>F/S/P</label>
-<span id="dFsp">---</span>
-</div>
-
-<div class="detail">
-<label>ACCOUNT</label>
-<span id="dAccount">---</span>
-</div>
-
-<div class="detail">
-<label>DATA SERVICE ID</label>
-<span id="dService">---</span>
-</div>
-
-<div class="detail">
-<label>VOIP SERVICE ID</label>
-<span id="dVoip">---</span>
-</div>
-
-<div class="detail">
-<label>SERIAL NUMBER</label>
-<span id="dSerial">---</span>
-</div>
-
-<div class="detail">
-<label>LATITUDE</label>
-<span id="dLat">---</span>
-</div>
-
-<div class="detail">
-<label>LONGITUDE</label>
-<span id="dLong">---</span>
-</div>
-
-</div>
 
 <div class="actions">
 
-<button
-    class="map-btn"
-    onclick="viewMap()">
-    📍 VIEW MAP
-</button>
+    <button
+        class="map-btn"
+        onclick="viewMap()">
+        📍 VIEW MAP
+    </button>
 
-<button
-    class="route-btn"
-    onclick="routeToNAP()">
-    🧭 ROUTE TO NAP
-</button>
+    <button
+        class="route-btn"
+        onclick="routeToNAP()">
+        🧭 ROUTE TO NAP
+    </button>
 
 </div>
 
 </section>
 
 
-<!-- PORT RESULTS -->
+<!-- =========================
+     RESULTS
+========================= -->
 
 <section class="card">
 
@@ -578,14 +591,14 @@ Latitude and Longitude.
 <thead>
 
 <tr>
-<th>Status</th>
-<th>NAP</th>
-<th>NAP Port</th>
-<th>Port Assignment</th>
-<th>F/S/P</th>
-<th>Account</th>
-<th>Service ID</th>
-<th>Serial Number</th>
+    <th>Status</th>
+    <th>NAP</th>
+    <th>NAP Port</th>
+    <th>Port Assignment</th>
+    <th>F/S/P</th>
+    <th>Account</th>
+    <th>Service ID</th>
+    <th>Serial Number</th>
 </tr>
 
 </thead>
@@ -593,9 +606,9 @@ Latitude and Longitude.
 <tbody id="resultsBody">
 
 <tr>
-<td colspan="8" class="empty">
-Load both databases first.
-</td>
+    <td colspan="8" class="empty">
+        Load both databases first.
+    </td>
 </tr>
 
 </tbody>
@@ -610,121 +623,209 @@ Load both databases first.
 
 
 <footer class="footer">
-NLZ NAP Finder • Fiber Network Operations Tool
+    NLZ NAP Finder • Fiber Network Operations Tool
 </footer>
 
 
 <script>
 
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
 let portDB = [];
 let locationDB = [];
+
 let currentResults = [];
 let currentLocation = null;
 
 
-/* =========================
-   NORMALIZE
-========================= */
+/* =========================================================
+   NORMALIZE TEXT
+========================================================= */
+
+function cleanText(value){
+
+    return String(value ?? "")
+        .replace(/^\uFEFF/, "")
+        .trim();
+
+}
+
+
+/* =========================================================
+   NORMALIZE HEADER
+========================================================= */
 
 function normalizeHeader(value){
 
-    return String(value || "")
+    return cleanText(value)
         .toLowerCase()
-        .trim()
         .replace(/\s+/g,"_")
         .replace(/[^\w]/g,"");
 
 }
 
 
-/* =========================
-   CSV PARSER
-========================= */
+/* =========================================================
+   DETECT DELIMITER
+========================================================= */
+
+function detectDelimiter(text){
+
+    const firstLine =
+        text.split(/\r?\n/)[0] || "";
+
+    const tabCount =
+        (firstLine.match(/\t/g) || []).length;
+
+    const commaCount =
+        (firstLine.match(/,/g) || []).length;
+
+    const semicolonCount =
+        (firstLine.match(/;/g) || []).length;
+
+    if(tabCount >= commaCount && tabCount >= semicolonCount){
+        return "\t";
+    }
+
+    if(semicolonCount > commaCount){
+        return ";";
+    }
+
+    return ",";
+}
+
+
+/* =========================================================
+   CSV / TAB PARSER
+========================================================= */
 
 function parseCSV(text){
 
-    const rows=[];
-    let row=[];
-    let value="";
-    let quotes=false;
+    text = String(text || "")
+        .replace(/^\uFEFF/, "");
 
-    for(let i=0;i<text.length;i++){
+    const delimiter = detectDelimiter(text);
 
-        const c=text[i];
-        const next=text[i+1];
+    const rows = [];
+
+    let row = [];
+    let value = "";
+    let quotes = false;
+
+    for(let i = 0; i < text.length; i++){
+
+        const c = text[i];
+        const next = text[i + 1];
 
         if(c === '"' && quotes && next === '"'){
 
-            value+='"';
+            value += '"';
             i++;
 
-        }else if(c === '"'){
+        }
+        else if(c === '"'){
 
-            quotes=!quotes;
+            quotes = !quotes;
 
-        }else if(c === "," && !quotes){
+        }
+        else if(c === delimiter && !quotes){
 
-            row.push(value.trim());
-            value="";
+            row.push(cleanText(value));
+            value = "";
 
-        }else if((c === "\n" || c === "\r") && !quotes){
+        }
+        else if((c === "\n" || c === "\r") && !quotes){
 
-            if(c === "\r" && next === "\n") i++;
+            if(c === "\r" && next === "\n"){
+                i++;
+            }
 
-            row.push(value.trim());
+            row.push(cleanText(value));
 
-            if(row.some(x=>x!=="")){
+            if(row.some(x => x !== "")){
                 rows.push(row);
             }
 
-            row=[];
-            value="";
+            row = [];
+            value = "";
 
-        }else{
+        }
+        else{
 
-            value+=c;
+            value += c;
 
         }
 
     }
 
-    if(value!=="" || row.length){
 
-        row.push(value.trim());
-        rows.push(row);
+    if(value !== "" || row.length){
+
+        row.push(cleanText(value));
+
+        if(row.some(x => x !== "")){
+            rows.push(row);
+        }
 
     }
 
-    if(!rows.length) return [];
 
-    const rawHeaders=rows[0];
+    if(!rows.length){
+        return [];
+    }
 
-    const headers=rawHeaders.map(normalizeHeader);
+
+    /* HEADER */
+
+    const rawHeaders = rows[0];
+
+    const headers =
+        rawHeaders.map(normalizeHeader);
+
 
     /*
-       Your LOCATION file has a blank column
-       after NAP_SPLITTER.
+        IMPORTANT:
 
-       We automatically treat that blank
-       column as NAP_PORT.
+        Your NAP LOCATION file is:
+
+        VENDOR
+        OLT_NAME
+        NAP
+        NAP_SPLITTER
+        [BLANK HEADER]
+        SerialNo
+        ACCOUNT_NUMBER
+        DATA_SERVICE_ID
+        VOIP_SERVICE_ID
+        LAT
+        LONG
+
+        The blank column is NAP_PORT.
     */
 
-    let blankIndex=headers.indexOf("");
+    for(let i = 0; i < headers.length; i++){
 
-    if(blankIndex !== -1){
+        if(headers[i] === ""){
 
-        headers[blankIndex]="nap_port";
+            headers[i] = "nap_port";
+
+        }
 
     }
 
-    return rows.slice(1).map(r=>{
 
-        const obj={};
+    /* DATA */
 
-        headers.forEach((h,i)=>{
+    return rows.slice(1).map(r => {
+
+        const obj = {};
+
+        headers.forEach((h,i) => {
 
             if(h){
-                obj[h]=r[i] || "";
+                obj[h] = cleanText(r[i] || "");
             }
 
         });
@@ -736,200 +837,330 @@ function parseCSV(text){
 }
 
 
-/* =========================
+/* =========================================================
    LOAD PORT DATABASE
-========================= */
+========================================================= */
 
 function loadPortDatabase(){
 
-    const file=
-        document.getElementById("portFile").files[0];
+    const input =
+        document.getElementById("portFile");
+
+    const file =
+        input.files[0];
 
     if(!file){
 
-        alert("Please select PORT CHECKING CSV.");
+        alert("Please select the PORT CHECKING CSV file.");
         return;
 
     }
 
-    const reader=new FileReader();
 
-    reader.onload=function(e){
+    const reader = new FileReader();
 
-        portDB=parseCSV(e.target.result);
 
-        document.getElementById("portInfo").textContent=
-            file.name+" • "+
-            portDB.length.toLocaleString()+
-            " records";
+    reader.onload = function(e){
 
-        updateStatus();
+        try{
+
+            portDB =
+                parseCSV(e.target.result);
+
+
+            if(!portDB.length){
+
+                throw new Error(
+                    "No records detected."
+                );
+
+            }
+
+
+            document.getElementById("portInfo").textContent =
+                file.name +
+                " • " +
+                portDB.length.toLocaleString() +
+                " records";
+
+
+            console.log(
+                "PORT DATABASE:",
+                portDB[0]
+            );
+
+
+            updateStatus();
+
+        }
+        catch(error){
+
+            console.error(error);
+
+            document.getElementById("portInfo").innerHTML =
+                '<span class="error">ERROR: ' +
+                error.message +
+                '</span>';
+
+        }
 
     };
+
 
     reader.readAsText(file);
 
 }
 
 
-/* =========================
+/* =========================================================
    LOAD LOCATION DATABASE
-========================= */
+========================================================= */
 
 function loadLocationDatabase(){
 
-    const file=
-        document.getElementById("locationFile").files[0];
+    const input =
+        document.getElementById("locationFile");
+
+    const file =
+        input.files[0];
 
     if(!file){
 
-        alert("Please select NAP LOCATION CSV.");
+        alert("Please select the NAP LOCATION CSV file.");
         return;
 
     }
 
-    const reader=new FileReader();
 
-    reader.onload=function(e){
+    const reader = new FileReader();
 
-        locationDB=parseCSV(e.target.result);
 
-        document.getElementById("locationInfo").textContent=
-            file.name+" • "+
-            locationDB.length.toLocaleString()+
-            " records";
+    reader.onload = function(e){
 
-        updateStatus();
+        try{
+
+            locationDB =
+                parseCSV(e.target.result);
+
+
+            if(!locationDB.length){
+
+                throw new Error(
+                    "No records detected."
+                );
+
+            }
+
+
+            document.getElementById("locationInfo").textContent =
+                file.name +
+                " • " +
+                locationDB.length.toLocaleString() +
+                " records";
+
+
+            console.log(
+                "LOCATION DATABASE:",
+                locationDB[0]
+            );
+
+
+            updateStatus();
+
+        }
+        catch(error){
+
+            console.error(error);
+
+            document.getElementById("locationInfo").innerHTML =
+                '<span class="error">ERROR: ' +
+                error.message +
+                '</span>';
+
+        }
 
     };
+
 
     reader.readAsText(file);
 
 }
 
 
-/* =========================
-   STATUS
-========================= */
+/* =========================================================
+   DATABASE STATUS
+========================================================= */
 
 function updateStatus(){
 
-    const el=
+    const status =
         document.getElementById("databaseStatus");
 
-    if(portDB.length && locationDB.length){
 
-        el.textContent="BOTH DATABASES READY";
-        el.className="status ready";
+    if(portDB.length > 0 &&
+       locationDB.length > 0){
 
-    }else{
+        status.textContent =
+            "✅ BOTH DATABASES READY";
 
-        el.textContent="WAITING FOR BOTH DATABASES";
-        el.className="status warning";
+        status.className =
+            "status ready";
+
+    }
+    else{
+
+        status.textContent =
+            "WAITING FOR BOTH DATABASES";
+
+        status.className =
+            "status warning";
 
     }
 
 }
 
 
-/* =========================
+/* =========================================================
+   NORMALIZED VALUE
+========================================================= */
+
+function norm(value){
+
+    return cleanText(value)
+        .toLowerCase();
+
+}
+
+
+/* =========================================================
    SEARCH
-========================= */
+========================================================= */
 
 function searchData(){
 
-    if(!portDB.length || !locationDB.length){
+    if(!portDB.length){
 
         alert(
-            "Please load BOTH PORT CHECKING and NAP LOCATION databases first."
+            "Please load PORT CHECKING DATABASE first."
         );
 
         return;
 
     }
 
-    const keyword=
-        document
-        .getElementById("searchInput")
-        .value
-        .trim()
-        .toLowerCase();
 
-    if(!keyword){
+    if(!locationDB.length){
 
-        alert("Enter a search keyword.");
+        alert(
+            "Please load NAP LOCATION DATABASE first."
+        );
+
         return;
 
     }
 
-    const type=
+
+    const input =
+        document.getElementById("searchInput");
+
+
+    const keyword =
+        norm(input.value);
+
+
+    if(!keyword){
+
+        alert("Please enter a search keyword.");
+
+        return;
+
+    }
+
+
+    const type =
         document.getElementById("searchType").value;
 
-    const results=portDB.filter(row=>{
 
-        const fields={
+    const results =
+        portDB.filter(row => {
 
-            nap:row.nap_name,
 
-            olt:row.olt_name,
+            const fields = {
 
-            napport:row.nap_port,
+                nap:
+                    row.nap_name,
 
-            port:row.port_assignment,
+                olt:
+                    row.olt_name,
 
-            fsp:row.fsp,
+                napport:
+                    row.nap_port,
 
-            account:row.bb_customer_account,
+                port:
+                    row.port_assignment,
 
-            service:row.servic_id,
+                fsp:
+                    row.fsp,
 
-            serial:row.serial_number
+                account:
+                    row.bb_customer_account,
 
-        };
+                service:
+                    row.servic_id,
 
-        if(type==="all"){
+                serial:
+                    row.serial_number
 
-            return Object.values(fields)
-                .some(v=>
-                    String(v||"")
-                    .toLowerCase()
-                    .includes(keyword)
-                );
+            };
 
-        }
 
-        return String(fields[type]||"")
-            .toLowerCase()
-            .includes(keyword);
+            if(type === "all"){
 
-    });
+                return Object.values(fields)
+                    .some(v =>
+                        norm(v).includes(keyword)
+                    );
 
-    currentResults=results;
+            }
+
+
+            return norm(fields[type])
+                .includes(keyword);
+
+        });
+
+
+    currentResults = results;
+
 
     displayResults(results);
 
 }
 
 
-/* =========================
-   DISPLAY
-========================= */
+/* =========================================================
+   DISPLAY RESULTS
+========================================================= */
 
 function displayResults(results){
 
-    const body=
+    const body =
         document.getElementById("resultsBody");
 
-    body.innerHTML="";
+
+    body.innerHTML = "";
+
 
     if(!results.length){
 
-        body.innerHTML=`
-        <tr>
-            <td colspan="8" class="empty">
-                No matching records found.
-            </td>
-        </tr>`;
+        body.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    ❌ No matching records found.
+                </td>
+            </tr>
+        `;
+
 
         clearDetails();
 
@@ -938,73 +1169,78 @@ function displayResults(results){
     }
 
 
-    /*
-       Use first matching record
-       to find the NAP location.
-    */
-
-    const first=results[0];
-
-    const nap=
-        String(first.nap_name||"")
-        .trim()
-        .toLowerCase();
-
-    currentLocation=
-        locationDB.find(x=>
-            String(x.nap||"")
-            .trim()
-            .toLowerCase()===nap
-        ) || null;
-
-
-    updateNAPDetails(first,currentLocation);
+    const first =
+        results[0];
 
 
     /*
-       Show all matching ports.
+       MATCH LOCATION DATABASE
+
+       Primary:
+       VENDOR + OLT + NAP
+
+       If no exact match,
+       fallback to NAP only.
     */
 
-    results.forEach(row=>{
-
-        const locationMatch=
-            locationDB.find(x=>
-                String(x.nap||"").trim().toLowerCase()
-                ===
-                String(row.nap_name||"").trim().toLowerCase()
-                &&
-                String(x.nap_port||"").trim().toLowerCase()
-                ===
-                String(row.nap_port||"").trim().toLowerCase()
-        );
+    currentLocation =
+        findLocation(first);
 
 
-        const tr=document.createElement("tr");
+    updateNAPDetails(
+        first,
+        currentLocation
+    );
 
-        tr.innerHTML=`
 
-        <td class="occupied">🔴 ASSIGNED</td>
+    /* DISPLAY PORT RECORDS */
 
-        <td>
-            <span class="nap-link"
-                onclick="selectNAP('${safeAttr(row.nap_name)}')">
-                ${safe(row.nap_name)}
-            </span>
-        </td>
+    results.forEach(row => {
 
-        <td>${safe(row.nap_port)}</td>
+        const tr =
+            document.createElement("tr");
 
-        <td>${safe(row.port_assignment)}</td>
 
-        <td>${safe(row.fsp)}</td>
+        tr.innerHTML = `
 
-        <td>${safe(row.bb_customer_account)}</td>
+            <td class="occupied">
+                🔴 ASSIGNED
+            </td>
 
-        <td>${safe(row.servic_id)}</td>
+            <td>
+                <span
+                    class="nap-link"
+                    onclick="selectNAP('${escapeAttr(row.nap_name)}')">
+                    ${safe(row.nap_name)}
+                </span>
+            </td>
 
-        <td>${safe(row.serial_number)}</td>
+            <td>
+                ${safe(row.nap_port)}
+            </td>
+
+            <td>
+                ${safe(row.port_assignment)}
+            </td>
+
+            <td>
+                ${safe(row.fsp)}
+            </td>
+
+            <td>
+                ${safe(row.bb_customer_account)}
+            </td>
+
+            <td>
+                ${safe(row.servic_id)}
+            </td>
+
+            <td>
+                ${safe(row.serial_number)}
+            </td>
 
         `;
+
 
         body.appendChild(tr);
 
@@ -1012,60 +1248,84 @@ function displayResults(results){
 
 
     /*
-       Add location-only ports which have
-       no corresponding PORT CHECKING record.
+       FIND LOCATION PORTS
+
+       This lets us show location records
+       that have no matching PORT CHECKING
+       record.
+
+       We call them "NOT IN PORT CHECKING"
+       instead of saying definitely available.
     */
 
     if(currentLocation){
 
-        const napName=
-            String(first.nap_name||"")
-            .trim()
-            .toLowerCase();
+        const napName =
+            norm(first.nap_name);
 
-        const locationPorts=
-            locationDB.filter(x=>
-                String(x.nap||"")
-                .trim()
-                .toLowerCase()===napName
-            );
 
-        locationPorts.forEach(loc=>{
+        const locationPorts =
+            locationDB.filter(x => {
 
-            const exists=
-                results.some(r=>
-                    String(r.nap_port||"")
-                    .trim()
-                    .toLowerCase()
-                    ===
-                    String(loc.nap_port||"")
-                    .trim()
-                    .toLowerCase()
-                );
+                return norm(x.nap) === napName;
 
-            if(!exists && loc.nap_port){
+            });
 
-                const tr=document.createElement("tr");
 
-                tr.innerHTML=`
+        locationPorts.forEach(loc => {
 
-                <td class="available">🟢 AVAILABLE*</td>
+            const matchingPort =
+                results.some(r => {
 
-                <td>${safe(loc.nap)}</td>
+                    return norm(r.nap_port)
+                        === norm(loc.nap_port);
 
-                <td>${safe(loc.nap_port)}</td>
+                });
 
-                <td>---</td>
 
-                <td>---</td>
+            if(!matchingPort &&
+               loc.nap_port){
 
-                <td>---</td>
+                const tr =
+                    document.createElement("tr");
 
-                <td>---</td>
 
-                <td>---</td>
+                tr.innerHTML = `
+
+                    <td class="available">
+                        🟢 NOT IN PORT CHECKING
+                    </td>
+
+                    <td>
+                        ${safe(loc.nap)}
+                    </td>
+
+                    <td>
+                        ${safe(loc.nap_port)}
+                    </td>
+
+                    <td>
+                        ---
+                    </td>
+
+                    <td>
+                        ---
+                    </td>
+
+                    <td>
+                        ---
+                    </td>
+
+                    <td>
+                        ---
+                    </td>
+
+                    <td>
+                        ---
+                    </td>
 
                 `;
+
 
                 body.appendChild(tr);
 
@@ -1078,165 +1338,287 @@ function displayResults(results){
 }
 
 
-/* =========================
-   DETAILS
-========================= */
+/* =========================================================
+   FIND LOCATION
+========================================================= */
 
-function updateNAPDetails(row,loc){
+function findLocation(portRow){
 
-    document.getElementById("sumNap").textContent=
-        row.nap_name||"---";
+    const vendor =
+        norm(portRow.vendor);
 
-    document.getElementById("sumOlt").textContent=
-        row.olt_name||"---";
+    const olt =
+        norm(portRow.olt_name);
 
-    document.getElementById("dVendor").textContent=
-        row.vendor||"---";
+    const nap =
+        norm(portRow.nap_name);
 
-    document.getElementById("dSplitter").textContent=
-        loc?.nap_splitter||"---";
+    /*
+       First try:
+       VENDOR + OLT + NAP
+    */
 
-    document.getElementById("dNapPort").textContent=
-        row.nap_port||"---";
+    let match =
+        locationDB.find(x => {
 
-    document.getElementById("dPort").textContent=
-        row.port_assignment||"---";
+            return (
+                norm(x.vendor) === vendor &&
+                norm(x.olt_name) === olt &&
+                norm(x.nap) === nap
+            );
 
-    document.getElementById("dFsp").textContent=
-        row.fsp||"---";
-
-    document.getElementById("dAccount").textContent=
-        row.bb_customer_account||"---";
-
-    document.getElementById("dService").textContent=
-        row.servic_id||"---";
-
-    document.getElementById("dVoip").textContent=
-        loc?.voip_service_id||"---";
-
-    document.getElementById("dSerial").textContent=
-        row.serial_number||"---";
-
-    document.getElementById("dLat").textContent=
-        loc?.lat||"---";
-
-    document.getElementById("dLong").textContent=
-        loc?.long||"---";
+        });
 
 
-    document.getElementById("sumTotal").textContent=
-        currentResults.length;
+    if(match){
+        return match;
+    }
 
-    document.getElementById("sumAssigned").textContent=
-        currentResults.length;
+
+    /*
+       Second try:
+       OLT + NAP
+    */
+
+    match =
+        locationDB.find(x => {
+
+            return (
+                norm(x.olt_name) === olt &&
+                norm(x.nap) === nap
+            );
+
+        });
+
+
+    if(match){
+        return match;
+    }
+
+
+    /*
+       Final fallback:
+       NAP only
+    */
+
+    return locationDB.find(x => {
+
+        return norm(x.nap) === nap;
+
+    }) || null;
 
 }
 
 
-/* =========================
+/* =========================================================
+   UPDATE NAP DETAILS
+========================================================= */
+
+function updateNAPDetails(row,loc){
+
+    document.getElementById("sumNap").textContent =
+        row.nap_name || "---";
+
+
+    document.getElementById("sumOlt").textContent =
+        row.olt_name || "---";
+
+
+    document.getElementById("dVendor").textContent =
+        row.vendor || "---";
+
+
+    document.getElementById("dSplitter").textContent =
+        loc?.nap_splitter || "---";
+
+
+    document.getElementById("dNapPort").textContent =
+        row.nap_port || "---";
+
+
+    document.getElementById("dPort").textContent =
+        row.port_assignment || "---";
+
+
+    document.getElementById("dFsp").textContent =
+        row.fsp || "---";
+
+
+    document.getElementById("dAccount").textContent =
+        row.bb_customer_account || "---";
+
+
+    document.getElementById("dService").textContent =
+        row.servic_id || "---";
+
+
+    document.getElementById("dVoip").textContent =
+        loc?.voip_service_id || "---";
+
+
+    document.getElementById("dSerial").textContent =
+        row.serial_number || "---";
+
+
+    document.getElementById("dLat").textContent =
+        loc?.lat || "---";
+
+
+    document.getElementById("dLong").textContent =
+        loc?.long || "---";
+
+
+    document.getElementById("sumTotal").textContent =
+        currentResults.length;
+
+
+    document.getElementById("sumAssigned").textContent =
+        currentResults.filter(x =>
+            cleanText(x.port_assignment) !== ""
+        ).length;
+
+}
+
+
+/* =========================================================
    SELECT NAP
-========================= */
+========================================================= */
 
 function selectNAP(nap){
 
-    document.getElementById("searchInput").value=nap;
+    document.getElementById("searchInput").value =
+        nap;
 
-    document.getElementById("searchType").value="nap";
+
+    document.getElementById("searchType").value =
+        "nap";
+
 
     searchData();
 
 }
 
 
-/* =========================
-   MAP
-========================= */
+/* =========================================================
+   VIEW MAP
+========================================================= */
 
 function viewMap(){
 
     if(!currentLocation){
 
-        alert("No location found.");
+        alert(
+            "No matching NAP location found."
+        );
+
         return;
 
     }
 
-    const lat=currentLocation.lat;
-    const lon=currentLocation.long;
+
+    const lat =
+        cleanText(currentLocation.lat);
+
+    const lon =
+        cleanText(currentLocation.long);
+
 
     if(!lat || !lon){
 
-        alert("Latitude/Longitude not available.");
+        alert(
+            "Latitude/Longitude not available."
+        );
+
         return;
 
     }
 
+
     window.open(
-        "https://www.google.com/maps?q="+
-        encodeURIComponent(lat)+","+
-        encodeURIComponent(lon),
+        "https://www.google.com/maps?q=" +
+        encodeURIComponent(lat + "," + lon),
         "_blank"
     );
 
 }
 
 
-/* =========================
-   ROUTE
-========================= */
+/* =========================================================
+   ROUTE TO NAP
+========================================================= */
 
 function routeToNAP(){
 
     if(!currentLocation){
 
-        alert("No location found.");
+        alert(
+            "No matching NAP location found."
+        );
+
         return;
 
     }
 
-    const lat=currentLocation.lat;
-    const lon=currentLocation.long;
+
+    const lat =
+        cleanText(currentLocation.lat);
+
+    const lon =
+        cleanText(currentLocation.long);
+
 
     if(!lat || !lon){
 
-        alert("Latitude/Longitude not available.");
+        alert(
+            "Latitude/Longitude not available."
+        );
+
         return;
 
     }
 
+
     window.open(
-        "https://www.google.com/maps/dir/?api=1&destination="+
-        encodeURIComponent(lat)+","+
-        encodeURIComponent(lon),
+        "https://www.google.com/maps/dir/?api=1&destination=" +
+        encodeURIComponent(lat + "," + lon),
         "_blank"
     );
 
 }
 
 
-/* =========================
+/* =========================================================
    CLEAR
-========================= */
+========================================================= */
 
 function clearSearch(){
 
-    document.getElementById("searchInput").value="";
+    document.getElementById("searchInput").value =
+        "";
 
-    document.getElementById("resultsBody").innerHTML=`
-    <tr>
-        <td colspan="8" class="empty">
-            Enter a search keyword.
-        </td>
-    </tr>`;
+
+    document.getElementById("resultsBody").innerHTML = `
+        <tr>
+            <td colspan="8" class="empty">
+                Enter a search keyword.
+            </td>
+        </tr>
+    `;
+
 
     clearDetails();
 
 }
 
 
+/* =========================================================
+   CLEAR DETAILS
+========================================================= */
+
 function clearDetails(){
 
-    [
+    const ids = [
+
         "sumNap",
         "sumOlt",
         "dVendor",
@@ -1250,23 +1632,40 @@ function clearDetails(){
         "dSerial",
         "dLat",
         "dLong"
-    ].forEach(id=>{
-        document.getElementById(id).textContent="---";
+
+    ];
+
+
+    ids.forEach(id => {
+
+        document.getElementById(id)
+            .textContent = "---";
+
     });
 
-    document.getElementById("sumTotal").textContent="0";
-    document.getElementById("sumAssigned").textContent="0";
+
+    document.getElementById("sumTotal")
+        .textContent = "0";
+
+
+    document.getElementById("sumAssigned")
+        .textContent = "0";
+
+
+    currentResults = [];
+
+    currentLocation = null;
 
 }
 
 
-/* =========================
-   SAFE DISPLAY
-========================= */
+/* =========================================================
+   SAFE HTML
+========================================================= */
 
 function safe(value){
 
-    return String(value||"")
+    return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -1275,10 +1674,17 @@ function safe(value){
 
 }
 
-function safeAttr(value){
 
-    return String(value||"")
-        .replace(/'/g,"\\'");
+/* =========================================================
+   SAFE ATTRIBUTE
+========================================================= */
+
+function escapeAttr(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;");
 
 }
 
